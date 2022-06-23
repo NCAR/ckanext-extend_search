@@ -1,0 +1,12 @@
+
+
+datepicker-css:
+  contents:
+    - daterangepicker/daterangepicker-bs3.css
+
+datepicker-js:
+  output: extendsearch/datepicker.js
+  contents:
+    - daterangepicker/moment.js
+    - daterangepicker/daterangepicker.js
+    - daterangepicker/daterangepicker-module.js
