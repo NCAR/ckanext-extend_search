@@ -1,5 +1,5 @@
 import ckan
-import pylons
+#import pylons
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.model import User, Package, Group
@@ -56,55 +56,6 @@ class ExtendSearchPlugin(plugins.SingletonPlugin):
 
         #return modified facet queries
         search_params['fq'] = fq
-
-        return search_params
-
-
-    def after_search(self, search_params, search_results):
-
-        context = {'model': ckan.model,
-                   'session': ckan.model.Session,
-                   'user': pylons.c.user}
-
-        #set permission level: read (default is edit)
-        data_dict = {'user': pylons.c.user, 'permission': 'read'}
-        #get list of organisations that the user is a member of
-        orgs = ckan.logic.get_action('organization_list_for_user')(context, data_dict)
-
-        #user doesn't belong to an organisation
-        if not orgs:
-            print ('User is not a member of any organisations!')
-            c.maintainers = []
-            return search_params
-
-        #get a distinct list of members who belong to the organisations
-        members = []
-        for org in orgs:
-            params = {'id': org['id'], 'object_type': 'user'}
-            member_list = ckan.logic.get_action('member_list')(context, params)
-            for m in member_list:
-                members.append(m)
-
-        memberset = set(members)
-
-
-        #need the user name to match with the maintainer field
-        current_user_name = None
-        member_names = []
-        for member in memberset:
-            user = User.get(member[0])    #user id
-            member_names.append(user.name)
-
-
-        #get all maintainers
-        maintainers = [p[0] for p in meta.Session.query(distinct(Package.maintainer)) if p[0]]
-        maintset = set(maintainers)
-
-
-        #filter maintainers by user-related organisation members
-        results = maintset.intersection(member_names)
-        c.maintainers = results
-
 
         return search_params
 
