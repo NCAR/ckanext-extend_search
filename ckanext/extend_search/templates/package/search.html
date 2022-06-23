@@ -1,11 +1,8 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
-  {% resource 'ckanext-datesearch/moment.js' %}
-  {% resource 'ckanext-datesearch/daterangepicker.js' %}
-  {% resource 'ckanext-datesearch/daterangepicker-bs3.css' %}
-  {% resource 'ckanext-datesearch/daterangepicker-module.js' %}
-  {% resource 'ckanext-datesearch/custodianpicker-module.js' %}
+  {% asset 'extendsearch/datepicker-js' %}
+  {% asset 'extendsearch/datepicker-css' %}
 
   {# This <section> is the date-range picker widget in the sidebar. #}
   <section class="module module-narrow module-shallow">
@@ -21,41 +18,6 @@
     </div>
   </section>
 
-  {# Custodian <section> #}
-  <section class="module module-narrow module-shallow">
-    <h2 class="module-heading">
-        <i class="icon-medium icon-filter"></i>
-        Custodian
-      {% if c.user %}
-      <a href="{{ h.remove_url_param(['ext_cust_id']) }}"
-         class="action">{{ _('Clear') }}</a>
-      {% endif %}
-    </h2>
-    {# The Custodian selectlist #}
-    <div class="module-content">
-        {% if c.user %}
-        <select id="cust_id" name="cust_id" style="width: 190px" data-module="custodianpicker-module">
-            <option value=""
-            {% if not request.params.get('ext_cust_id') %}
-                    selected="selected"
-            {% endif %}/>
-
-            {# iterate through maintainers #}
-            {% for user in c.maintainers %}
-            <option value="{{user}}"
-                {% if request.params.get('ext_cust_id')==user %}
-                    selected="selected"
-                {% endif %}
-                    >
-            {{user}}
-            </option>
-        {% endfor %}
-        </select>
-        {% else %}
-        Must be logged in to search by Custodian
-        {% endif %}
-    </div>
-  </section>
 
   {{ super() }}
 {% endblock %}

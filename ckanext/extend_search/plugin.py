@@ -20,8 +20,8 @@ class ExtendSearchPlugin(plugins.SingletonPlugin):
 
     def update_config(self, config):
         toolkit.add_template_directory(config, 'templates')
-        toolkit.add_resource('fanstatic', 'ckanext-datesearch')
-        toolkit.add_resource('fanstatic', 'custodianpicker-module')
+        toolkit.add_resource('fanstatic', 'extendsearch')
+        #toolkit.add_resource('fanstatic', 'custodianpicker-module')
 
 
     # Add the custom parameters to Solr's facet queries
