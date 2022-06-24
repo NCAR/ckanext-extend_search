@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.0'
+version = '0.1'
 
 setup(
-    name='ckanext-extend_search',
+    name='ckanext-extendsearch',
     version=version,
     description="Extends Ckan dataset search",
     long_description='''
@@ -16,7 +16,7 @@ setup(
     url='',
     license='',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    namespace_packages=['ckanext', 'ckanext.extend_search'],
+    namespace_packages=['ckanext', 'ckanext.extendsearch'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
@@ -24,6 +24,6 @@ setup(
     ],
     entry_points='''
 	    [ckan.plugins]
-  	    extend_search=ckanext.extend_search.plugin:ExtendSearchPlugin
+  	    extendsearch=ckanext.extendsearch.plugin:ExtendSearchPlugin
 	''',
 )
