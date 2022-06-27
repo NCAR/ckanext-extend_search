@@ -2,11 +2,11 @@
 import datetime
 import ckan.plugins.toolkit as tk
 import pytz
-import pylons.config as config
+from ckan.plugins.toolkit import config
 from pytz import timezone
-from ckan.lib.helpers import date_str_to_datetime
-from ckan.common import _
-from ckan import model
+#from ckan.lib.helpers import date_str_to_datetime
+#from ckan.common import _
+#from ckan import model
 
 DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
 
